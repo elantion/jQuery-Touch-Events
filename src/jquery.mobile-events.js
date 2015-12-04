@@ -480,19 +480,21 @@
 					
                     for( var i = 0; i < touches.length; i++)
                     {
+                        var offsetLeft = $this.offset() ? $this.offset().left : 0;
+                        var offsetTop = $this.offset() ? $this.offset().top : 0;
                         var touch = {
                             'position': {
                                 'x': (settings.touch_capable) ? origEvent.changedTouches[i].screenX : e.screenX,
                                 'y': (settings.touch_capable) ? origEvent.changedTouches[i].screenY : e.screenY
                             },
                             'offset': {
-                                'x': (settings.touch_capable) ? Math.round(origEvent.changedTouches[i].pageX - $this.offset().left) : Math.round(e.pageX - $this.offset().left),
-                                'y': (settings.touch_capable) ? Math.round(origEvent.changedTouches[i].pageY - $this.offset().top) : Math.round(e.pageY - $this.offset().top)
+                                'x': (settings.touch_capable) ? Math.round(origEvent.changedTouches[i].pageX - offsetLeft) : Math.round(e.pageX - offsetLeft),
+                                'y': (settings.touch_capable) ? Math.round(origEvent.changedTouches[i].pageY - offsetTop) : Math.round(e.pageY - offsetTop)
                             },
                             'time': Date.now(),
                             'target': e.target
                         };
-                    	
+
                         touchData.push( touch );
                     }
                     
